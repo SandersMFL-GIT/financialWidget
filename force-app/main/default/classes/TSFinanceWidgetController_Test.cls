@@ -33,7 +33,9 @@ private class TSFinanceWidgetController_Test {
             Status__c     = 'Open',
             Account__c    = client.Id,
             MFL_Office__c = office.Id,
-            Case_Type__c  = 'Divorce w/out Children'
+            Case_Type__c  = 'Divorce w/out Children',
+     Hire_Date__c        = Date.today().addDays(-1)   
+
         );
         setOpposingParty(matter, opposing.Id);
         insert matter;
@@ -86,7 +88,8 @@ private class TSFinanceWidgetController_Test {
         MFL_Office__c office = new MFL_Office__c(); insert office;
         Matters__c m = new Matters__c(
             Name='No Widget Matter', Status__c='Open',
-            Account__c=a.Id, MFL_Office__c=office.Id, Case_Type__c='Divorce w/out Children'
+            Account__c=a.Id, MFL_Office__c=office.Id, Case_Type__c='Divorce w/out Children',  Hire_Date__c = Date.today().addDays(-1)   
+
         );
         insert m;
 

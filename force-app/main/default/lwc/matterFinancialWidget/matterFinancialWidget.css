@@ -16,3 +16,28 @@
     position: relative;
     top: 1px;
 }
+/* Lightens the info banner background */
+.custom-info-banner {
+    background-color: #e8f1fb !important; /* soft blue tint */
+    border-left: 4px solid #5b6acd;
+    color: #1b2638;
+}
+
+/* Slightly larger, clearer message text */
+.custom-info-banner h2 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #1b2638;
+}
+.sync-status {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: -8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.sync-icon {
+    --slds-c-icon-color-foreground-default: #706e6b;
+}

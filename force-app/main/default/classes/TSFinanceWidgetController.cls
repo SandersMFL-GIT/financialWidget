@@ -3,6 +3,7 @@ public with sharing class TSFinanceWidgetController {
     public static TS_Finance_Widget__c getWidgetForMatter(Id matterId) {
         return [
             SELECT Id, Matter__c,
+            LastModifiedDate,
                    Timesolv_Id__c,
                    Timesolv_Project_Id__c,
                    Timesolv_Total_WIP_Fees__c,

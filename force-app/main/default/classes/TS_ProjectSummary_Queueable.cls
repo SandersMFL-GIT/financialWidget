@@ -1,38 +1,24 @@
-/**
- * TS_ProjectSummary_Queueable
- *
- * This Queueable class syncs project summary data from TimeSolv into the TS_Finance_Widget__c object.
- * It uses a chained-job architecture, where each job processes one page of API results,
- * making it robust against governor limits.
- *
- * USAGE:
- * To start the sync process, execute the following from an Anonymous Apex window:
+/*
  * TS_ProjectSummary_Queueable.startJob();
  */
 public with sharing class TS_ProjectSummary_Queueable implements Queueable, Database.AllowsCallouts {
 
-    // --- State passed between chained jobs ---
     private final Map<String, Id> matterByKey;
     private final Integer pageNum;
     private final Integer totalProcessedSoFar; 
 
-    // --- Hardcoded request controls ---
     private static final String  ORDER_BY   = '';
     private static final Boolean SORT_ASC   = false;
     private static final Integer PAGE_SIZE  = 200;
 
-    /**
-     * Constructor to carry state from one job to the next.
-     */
+    
     public TS_ProjectSummary_Queueable(Map<String, Id> matterMap, Integer pageNumber, Integer totalProcessed) {
         this.matterByKey = matterMap;
         this.pageNum = pageNumber;
         this.totalProcessedSoFar = totalProcessed;
     }
 
-    /**
-     * Main entry point to kick off the entire job chain.
-     */
+    
      public static void startJob() {
         Map<String, Id> initialMatterMap = new Map<String, Id>();
         for (Matters__c m : [
@@ -45,7 +31,7 @@ public with sharing class TS_ProjectSummary_Queueable implements Queueable, Data
         startJob(initialMatterMap); 
     }
 
-    // This new @TestVisible method allows our test to bypass the SOQL query above
+    
     
     @TestVisible
     private static void startJob(Map<String, Id> mattersToProcess) {
@@ -53,9 +39,7 @@ public with sharing class TS_ProjectSummary_Queueable implements Queueable, Data
             System.enqueueJob(new TS_ProjectSummary_Queueable(mattersToProcess, 1, 0));
         }
     }
-    /**
-     * Core logic. Executes for one page of API results.
-     */
+    
     public void execute(QueueableContext context) {
         String payload = '{'
             + '"OrderBy":"' + ORDER_BY + '",'

@@ -49,7 +49,9 @@ private class TS_ProjectSummary_Queueable_Test {
             Account__c        = client.Id,              
             MFL_Office__c     = office.Id,              
             Opposing_Party_a__c = opposing.Id,            
-            Case_Type__c      = 'Divorce w/out Children'  
+            Case_Type__c      = 'Divorce w/out Children',
+    Hire_Date__c  = Date.today().addDays(-1)
+
         );
         insert matter;
 

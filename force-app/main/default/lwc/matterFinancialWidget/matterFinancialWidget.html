@@ -25,6 +25,19 @@
                 <template lwc:if={isLoading}></template>
                 <template lwc:elseif={hasError}></template>
                 <template lwc:else>
+                    <!-- Info note (Option 1) -->
+<div class="slds-notify slds-notify_alert slds-theme_info slds-theme_alert-texture slds-m-bottom_small custom-info-banner" role="alert">
+                        <span class="slds-assistive-text">Info</span>
+                        <lightning-icon icon-name="utility:info" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                        <h2 class="slds-text-body_regular" >For real-time data, please refer to the corresponding records in TimeSolv.</h2>
+                    </div>
+
+                    <!-- Last synced timestamp -->
+                    <div class="slds-grid slds-align_absolute-center slds-text-color_weak slds-text-body_small slds-m-bottom_small">
+                        <lightning-icon icon-name="utility:clock" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                        <span>Last synced: {formattedLastSync}</span>
+                    </div>
+
                     <div class="slds-p-vertical_medium slds-p-horizontal_small">
                         <div class="slds-grid slds-wrap slds-gutters_small">
                             <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-grid slds-grid_align-center">

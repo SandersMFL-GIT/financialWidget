@@ -109,13 +109,27 @@ export default class MatterFinancialWidget extends LightningElement {
     get formattedTotalBalanceDue() { return this.formatCurrency(this.totalBalanceDue); }
 
     /* ------------------ Summary box bindings ------------------ */
-    // SIMPLIFIED: These no longer check for credit.
     get trustVsWipLabel() {
         return 'Total Balance Due';
     }
     get formattedTrustVsWip() {
         return this.formatCurrency(this.totalBalanceDue);
     }
+
+    /* ------------------ Last Synced Timestamp ------------------ */
+get formattedLastSync() {
+    if (!this.widget || !this.widget.LastModifiedDate) {
+        return 'Not yet synced';
+    }
+    const dt = new Date(this.widget.LastModifiedDate);
+    return dt.toLocaleString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
+
 
     /* ------------------ Formatting ------------------ */
     formatCurrency(v) {
